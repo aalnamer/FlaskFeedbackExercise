@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {%block title%} {{user.username}} {% endblock %} {%
+block content %}
+
+<body>
+  <h1>{{user.username}}</h1>
+  <p><b>Your Id: </b> {{user.id}}</p>
+  <p><b> First Name: </b> {{user.first_name}}</p>
+  <p><b>Last Name: </b> {{user.last_name}}</p>
+  <p><b>Email:</b> {{user.email}}</p>
+
+  <p><a href="/"> Go Back To Register Page </a></p>
+  
+
+  <h2>Feedback</h2>
+  <ul>
+    {% for feedback in user.feedback %}
+
+    <li>
+      {{ feedback.title }}
+      <small>{{ feedback.content }}</small>
+    </li>
+    <a href="/feedback/{{feedback.id}}/update"> Edit</a>
+    <a href="/feedback/{{feedback.id}}/delete"> Delete</a>
+    {% endfor %}
+
+    <p>
+        <a href="/users/{{user.username}}/feedback/new"> Add New Feedback </a>
+
+    </p>
+
+    <a href="/users/{{user.username}}/delete"> Delete Account</a>
+</body>
+{% endblock %}
